@@ -1,0 +1,14 @@
+--- 
+title: Moving blogs...
+date: 01/03/2010
+
+So here I am, writing this blog post. I do hope that *this* blog does much
+better than my previous blog. I'll keep the older one hosted at Posterous,
+maybe I'll even mirror these 2 blogs? Nah, I don't think so. I'm going to try
+posting more often, even if that means there is only 1 paragraph of text, rather
+than 10.
+
+I'm sure you won't mind. :)
+
+Also, I'm going to fork toto and start hacking it up. First up: Support Temple,
+so that other template engines will work smoothly.
