@@ -12,3 +12,6 @@ I'm sure you won't mind. :)
 
 Also, I'm going to fork toto and start hacking it up. First up: Support <del>Temple</del> Tilt,
 so that other template engines will work smoothly.
+
+*Edit*: I keep almost adding support in, then I think: Why? Erb is good enough already.
+So instead I'm not. Oh well for you!
