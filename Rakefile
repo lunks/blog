@@ -45,6 +45,11 @@ rescue LoadError
     end
 end
 
+desc "Run the rack server"
+task :rack do
+    sh 'RACK_ENV="development" rackup'
+end
+
 def toto msg
   puts "\n  toto ~ #{msg}\n\n"
 end
