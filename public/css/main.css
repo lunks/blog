@@ -11,7 +11,10 @@ body {
 header, footer, section, article {
     display: block;
 }
-#content {
+
+body > section {
+}
+.content {
 }
 #by {
     font-style: italic;
@@ -60,9 +63,11 @@ body > header > h1 {
 }
 .post {
     margin-bottom: 30px;
+    border-bottom: 1px solid #111;
 }
 .post:last-child {
     margin-bottom: 10px;
+    border-bottom: 0px solid #111;
 }
 .post p {
     margin: 10px 0;
@@ -107,4 +112,19 @@ body > footer {
     font-style: italic;
     font-size: 18px;
     color: #888;
+}
+
+.somebox {
+    width: 960px;
+    margin-left: auto; margin-right: auto;
+    -moz-border-radius: 10px;
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+.somebox .content {
+    margin: 10px;
+    padding-left: 3px; padding-right: 3px;
+    background-color: white;
+    -moz-border-radius: 10px;
 }
