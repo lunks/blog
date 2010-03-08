@@ -6,7 +6,7 @@ body {
   line-height: 30px;
   padding: 15px;
   width: 720px;
-
+  background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A
 }
 header, footer, section, article {
 	display: block;

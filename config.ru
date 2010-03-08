@@ -7,7 +7,7 @@ require 'rack/less'
 require 'toto'
 
 # Rack config
-use Rack::Static, :urls => ['/css', '/js', '/images', '/favicon.ico'], :root => 'public'
+use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico'], :root => 'public'
 use Rack::CommonLogger
 use Rack::Deflect
 
