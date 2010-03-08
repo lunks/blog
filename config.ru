@@ -25,7 +25,7 @@ Rack::Less.configure do |config|
     config.compress = :yui # Requires yui-compressor gem
     config.cache = (ENV['RACK_ENV'] == 'development') # Heroku is read-only, so only cache in development
 end
-use Rack::Less, source: "less/"
+use Rack::Less, :source => "less/"
 
 #
 # Create and configure a toto instance
