@@ -1,5 +1,6 @@
 require 'rack'
 require 'rack/contrib'
+require 'coderay'
 require 'rack/codehighlighter'
 require 'rack/less'
 
@@ -18,8 +19,7 @@ if ENV['RACK_ENV'] == 'development'
   use Rack::Bug
 end
 
-use Rack::Codehighlighter, :ultraviolet, markdown: true, element: "pre>code",
-    pattern: /\A:::(\w+)\s*(\n|&#x000A;)/i, logging: false, theme: "sunburst"
+use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i, :logging => true
 
 Rack::Less.configure do |config|
     config.compress = :yui # Requires yui-compressor gem

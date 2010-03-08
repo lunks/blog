@@ -4,12 +4,14 @@ date: 01/03/2010
 So I patched toto to fix the Date class, but when I did so I used `def` instead
 of the proper `class`, e.g.
 
+    :::ruby
     def Date
         ...
     end
 
 Instead of the correct syntax, which is:
 
+    :::ruby
     class Date
         ...
     end
