@@ -5,6 +5,7 @@ require 'rack/codehighlighter'
 require 'rack/less'
 
 require 'toto'
+require 'nokogiri'
 
 # Rack config
 use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico'], :root => 'public'
