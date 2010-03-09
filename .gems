@@ -5,3 +5,4 @@ coderay
 rack-codehighlighter
 rack-less
 rack-contrib
+nokogiri
