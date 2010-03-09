@@ -8,7 +8,7 @@
 
       <section class="content">
         <%# Nokogiri was required in config.ru %>
-        <%= Nokogiri::HTML.fragment( body ).css("*").first.to_s %>
+        <%= Nokogiri::HTML.fragment( article.body ).css("*").first.to_s %>
       </section>
       <div class="more"><a href="<%= article.path %>">read on &raquo;</a></div>
     </article>
