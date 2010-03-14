@@ -4,9 +4,9 @@ date: 14/03/2010
 
 So I was reading my twitter stream, like I always do. But, this time around,
 @[cloudhead] had linked to [Kroc Camen]'s website, along with his CSS. He
-created his entire site in HTML5, but **without any <div>, <span>, id's or
+created his entire site in HTML5, but **without any &lt;div&gt;, &lt;span&gt;, id's or
 classes!** Also, using a lot of CSS tricks, Kroc did some seriously awesome
-things. (Look at any <abbr> tags, go ahead. Saw that pop-out? Awesome, right?!?)
+things. (Look at any &lt;abbr&gt; tags, go ahead. Saw that pop-out? Awesome, right?!?)
 
 So I'm going to rewrite my blog/site in HTML5 only, without any divs or spans.
 Not sure if I can go id- or span-less, but I'll try reducing the amount of them,
