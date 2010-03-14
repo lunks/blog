@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/raleway_thin.otf') format('opentype');
+}
+
+.raleway-font {
+    font-family: "Raleway";
+}
+
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/orbitron.otf') format('opentype');
+}
+
+.orbitron-font {
+    font-family: "Orbitron";
+}
