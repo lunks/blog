@@ -8,7 +8,7 @@ require 'toto'
 require 'nokogiri'
 
 # Rack config
-use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico', '/fonts'], :root => 'public'
+use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico', '/fonts', '/robots.txt'], :root => 'public'
 use Rack::CommonLogger
 use Rack::Deflect
 Rack::Mime::MIME_TYPES[".otf"] = "application/vnd.ms-opentype" # OpenType fonts
