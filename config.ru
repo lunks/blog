@@ -44,6 +44,7 @@ toto = Toto::Server.new do
   set :markdown,  :smart
   set :cache,      28800
   set :date, lambda {|now| now.strftime("%d %B %Y") }
+  set :error_page, lambda {|code| "Sadly, there is an error. You made it go #{code}, thanks a lot." }
 
   # set :author,    ENV['USER']                               # blog author
   # set :title,     Dir.pwd.split('/').last                   # site title
