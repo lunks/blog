@@ -31,20 +31,6 @@ task :publish do
   `git push heroku master`
 end
 
-begin
-  require 'seo_checker'
-   desc "Test for SEO"
-   task :seo do
-       toto "testing for SEO support (namely, sitemap)..."
-       require 'seo_checker'
-       SEOChecker.new("http://127.0.0.1:9292").check
-   end
-rescue LoadError
-    task :seo do
-        abort "SEO Checker is not available. In order to run seo, you must: sudo gem install seo_checker"
-    end
-end
-
 desc "Run the rack server"
 task :rack do
     sh 'RACK_ENV="development" rackup'
