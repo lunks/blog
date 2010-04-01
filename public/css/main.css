@@ -12,10 +12,6 @@ header, footer, section, article {
     display: block;
 }
 
-body > section {
-}
-.content {
-}
 #by {
     font-style: italic;
     margin-right: 5px;
@@ -57,12 +53,6 @@ a:hover {
     position: relative;
     top: -100%;
 }
-.post .body p:first-child {
-    margin-top: 0;
-}
-.post .body p:last-child {
-    margin-bottom: 0;
-}
 .post {
     margin-bottom: 30px;
     border-bottom: 1px solid #111;
@@ -84,42 +74,23 @@ a:hover {
     text-decoration: none;
 }
 .more a:hover { text-decoration: underline }
-body > header {
-    display: block;
-    margin-bottom: 20px;
-    margin: 2em auto;
-    color: #b8b8b8;
-}
 
-body > header > h1 {
-    font-weight: normal;
-    font-family: "Orbitron";
-    text-align: center;
-    display: block;
-    border-bottom: 1px solid #444;
-}
-body > header > ul  {
+body > section > ul  {
     text-align: center;
     margin: 0;
 }
-body > header > ul > li {
+body > section > ul > li {
     display: inline;
-    padding-right: 20px;
     font-size: 15px;
     margin: 0;
 }
-body > header > ul > li > a {
+body > section > ul > li > a {
     color: #b8b8b8;
+    margin: 0;
+    text-decoration: none;
+    text-align: center;
 }
 
-h1, h2, h3, h4 {
-    display: inline;
-    margin: 0;
-    font-weight: 600;
-}
-ul li {
-    list-style-type: square;
-}
 code {
     font-family: 'Anonymous Pro', 'Bitstream Vera Sans', 'Monaco', Courier, mono;
 }
