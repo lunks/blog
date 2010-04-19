@@ -1,0 +1,23 @@
+title: "Real time web: A lifestream using Superfeedr"
+date: 19/04/2010
+
+I'm trying to create a lifestream app, but it's real time. Also, it's only for
+me, not for anyone else.
+
+Now, this isn't to hard, therotically. Just need to get a list of RSS feeds for
+each of the services I use, then just poll them. Push the updates to the client.
+
+But what about the real time part? To do that, you'd need either a rapidly
+polling background or some other service to do that for you. [Superfeedr]
+does that job quite nicely!
+
+Now, I'd like to use Heroku, but it seems it's infrastructure isn't so
+friendly, and I couldn't find any docs. Thankfully, I found [this 'shell
+application'][gaeshell] on GitHub, so I have a basis to get started. Though,
+it is in Python, not Ruby so this will be interesting, to say the least. I'm
+gonna have to re-learn Python.
+
+Stay tuned, folks.
+
+[Superfeedr]: http://superfeedr.com/
+[gaeshell]: http://github.com/harperreed/gae-superfeedr-shell
