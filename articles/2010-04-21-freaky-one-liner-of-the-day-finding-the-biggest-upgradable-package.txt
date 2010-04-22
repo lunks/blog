@@ -1,0 +1,145 @@
+title: "Freaky one-liner of the day: Finding the biggest upgradable package"
+date: 21/04/2010
+
+Today, I wanted to do some upgrades. I used my favorite package manager, clyde,
+which itself is a wrapper/re-think of Pacman, Arch Linux's package manager.
+When I ran `clyde -Qu`, I got a total estimated download size of 210 MB! Now,
+in the grand scheme of things, that really isn't a whole lot. But on my
+pitiful 1 Mbps connection, that would take a long time! So I looked at the
+mess of the output, and saw that I still had Java installed. Seeing how I
+didn't use it, I uninstalled it. That also uninstalled OpenOffice, which I'm
+not to sure was the best idea, but we'll see. Doing so saved a total of 70
+MB to download, bringing the total download estimate to 140 MB.
+
+I have *ShowSize* option enabled in pacman.conf, so the -Qu/-Su options
+show each package's file size in their output. (Among other options.) An
+unfortunate side effect is that even the smallest amount of packages listed
+can become quite noisy, and so trying to find what package specifically is
+causing the estimated size to shoot up (or is it just a long tail effect?) is
+pretty hard. Thankfully, the shells are awesome. Plain, simple, awesome.
+
+In zsh, running clyde, with the ShowSize option enabled, this will produce a
+nice table showing the largest packages at the bottom, and the smallest up top.
+
+    yes n | clyde -Su 2>&1 | grep 'MB\]' | sed "s/Targets (.*)://g;s/ \[/-\[/g;s/ M/-M/g" | tr ' ' '\n' | sort -u | sed 's/-\[\(.*\)-MB\]/ \1/' | sort -nk2 | column -t | less
+
+Yikes! That's a monster one-liner, that is. 172 characters long, it's nothing
+to sneeze at. How about we break it down?
+
+### Clyde: Getting the information
+
+    yes n | clyde -Su 2>&1
+
+The one-liner starts off with `yes n`, which floods the standard input with
+repeating lines of 'n', just over and over. The default behaviour is to output
+'yes' repeatedly, but you can pass an alternate string to use as the parameter.
+
+Next, `yes`'s output is piped to clyde itself. As clyde doesn't provide a
+machine friendly method of getting a subset of packages, and their respective
+sizes, we have to go and make our own. The `-Su` operation lists all the
+packages that are upgradable. The default action after confirming that the
+user wants to proceed is to start downloading & installing the upgrades. I
+don't want to do that.
+
+What about `-Qu`, you may ask? All the -Q operations are entirely local,
+and don't go on the wire to retrieve information. It's impossible to get
+the new upgrades' sizes without going out to the internet, so `-Qu` doesn't
+provide the information I want.
+
+The `2>&1` just removes the prompt itself, as it's sent to stderr. It doesn't
+affect the process, but it is a bit noisy, so we don't need it. It is removed
+from the stream by the next command, `grep`.
+
+**NB**: You may need to prefix `clyde` with `sudo`, if you are running this
+as a normal user. (And you should, never run your system with root as your
+normal account!) I use a smart lil' function that automatically runs `sudo
+clyde` depending on what I pass in. Since -Q operations are entirely local
+and harmless, it doesn't call sudo. But all of the -S (except -Ss and -Sh)
+require root privileges, so when I call `clyde -Su` sudo is automatically
+called as well.
+
+### Grep: Finding the correct lines
+
+    | grep 'MB\]'
+
+A quick call to grep filters the input from clyde to select only the proper
+lines.  This is where *ShowSize* is required: Each line that I want has at
+least "MB]".  I don't know (and frankly, don't care) about those environments
+that don't have ShowSize enabled.
+
+### Sed: Cleaning up the human friendly text
+
+    | sed "s/Targets (.*)://g;s/ \[/-\[/g;s/ M/-M/g"
+
+As mentioned before, clyde doesn't provide a machine friendly output, solely
+human friendly versions. This sed call removes the "Targets (85)" bit, and be
+flexible about it, as well as preparing the lines for the next program, `tr`.
+
+### Tr: Creating whitespace to remove whitespace
+
+    | tr ' ' '\n'
+
+The human friendly version also includes lots of multiple spaces, between
+each package listed on one line. To do so, I just substitute all the spaces
+with newlines (creating the whitespace).
+
+"What about the package sizes," you say? That's what the 2nd half of the sed
+call did previously. It replaced the spaces surround the package size with
+dashes. The information is preserved, ready to be pulled out in a later call.
+
+### Sort: Organization and unique lines
+
+    | sort -u
+
+Sort has a seemingly uncommonly used parameter, `-u`, that not only causes
+sort to alphabetically organize the lines, but also to only use unique
+lines! Since every space has been transformed into empty lines, there are
+now lots of duplicate lines in the stream. By selecting only unique lines,
+we *remove the whitespace* while also increasing the machine readability
+(and severely reducing human legibility).
+
+### Sed: Retrieving the information
+
+    | sed 's/-\[\(.*\)-MB\]/ \1/'
+
+Now we're coming back full circle. We strip the dashes from the line, as well
+as the 'MB' description. This is another assumption: That all the package sizes
+are reported in the same size. There isn't much reason to assume otherwise,
+so it's a pretty safe bet. I use sed's ability to refer to matched groups
+in the substitution to really simplify the regular expression. We also space
+out the size information, ready to be used by `sort`, below.
+
+### Sort: Which is the biggest?
+
+    | sort -nk2
+
+OK, so we've got the size information ready to be consumed. `sort` can not
+only sort alphabetically, but it also sort numeric data as well! You can
+activate this feature by passing -n to sort.
+
+We also need sort to act on the 2nd column of data, the file sizes, not the
+package name. So you I used the -k option. See `sort(1)` for more information
+on it's syntax.  (Note: It's *very* similar to `cut`'s -f syntax.)
+
+### Column: Making it pretty
+
+    | column -t
+
+Finally, we're just about done. Column does all the work, making the output
+real nice & pretty. `-t` organizes the columns into an easily readable
+(with lots of whitespace!) table.
+
+### Less: User controlled consumption
+
+    | less
+
+And there we go. Less is self explanatory, allow the user to page through
+the results.
+
+---
+
+And we're done! That was quite the article, it's quite amazing how 172
+characters can have such a lengthy back story/description to them.
+
+For all those that made it thus far, the biggest culprit for that 140 MB
+estimate was `kdebase-workspace-4.4.2-4`.
