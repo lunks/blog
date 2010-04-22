@@ -143,3 +143,7 @@ characters can have such a lengthy back story/description to them.
 
 For all those that made it thus far, the biggest culprit for that 140 MB
 estimate was `kdebase-workspace-4.4.2-4`.
+
+PS: The command, and example output, is available as [a gist][gist] now.
+
+[gist]: http://gist.github.com/374680
