@@ -19,34 +19,34 @@ for you, try reading the page here for a possibly alternative explanation.
 http://www.jabberdoc.org/AdminGuide
 
 ### c2s.xml
-    * Set the ID (the name) of the server. Line 125.
-    * Use PAM as the authentication module: `<module>pam</module>` Line 334.
-    * Point to my SSL key for encrypted router communication, uncomment line 29.
-    * As a parameter to `<id>`, pointed it to my SSL key.
-    * As a parameter to `<id>`, required STARTTLS.
-    * Enable HTTP forward to http://evaryont.me. Uncomment line 176.
+* Set the ID (the name) of the server. Line 125.
+* Use PAM as the authentication module: `<module>pam</module>` Line 334.
+* Point to my SSL key for encrypted router communication, uncomment line 29.
+* As a parameter to `<id>`, pointed it to my SSL key.
+* As a parameter to `<id>`, required STARTTLS.
+* Enable HTTP forward to http://evaryont.me. Uncomment line 176.
 
 ### router.xml
-    * Switch to implicit deny: `<order>deny,allow</order>` Line 128
-    * Only allow localhost (127.0.0.1), uncomment line 128 and substitute
-      localhost's IP in.
-    * Point to my SSL key, uncomment line 54.
+* Switch to implicit deny: `<order>deny,allow</order>` Line 128
+* Only allow localhost (127.0.0.1), uncomment line 128 and substitute
+  localhost's IP in.
+* Point to my SSL key, uncomment line 54.
 
 ### sm.xml
-    * Set the ID of the server, again. **Make sure it's the same as in c2s.xml!**
-    * Uncomment line 579, so that new users (PAM users) are automatically
-      created in Jabber-land.
-    * Set my own account as admin. Line 299.
-    * Point to my SSL key, uncomment line 29.
+* Set the ID of the server, again. **Make sure it's the same as in c2s.xml!**
+* Uncomment line 579, so that new users (PAM users) are automatically
+  created in Jabber-land.
+* Set my own account as admin. Line 299.
+* Point to my SSL key, uncomment line 29.
 
 ### s2s.xml
-    * Point to my SSL key for encrypted router communication, uncomment line 40.
-    * Point to my SSL key for encrypted server to server communication,
-      uncomment line 107.
+* Point to my SSL key for encrypted router communication, uncomment line 40.
+* Point to my SSL key for encrypted server to server communication,
+  uncomment line 107.
 
 ### DNS
-    * Added SRV records that loop back and point to this server. Perhaps it's
-      silly, but it may be necessary. It probably is not.
+* Added SRV records that loop back and point to this server. Perhaps it's
+  silly, but it may be necessary. It probably is not.
 
 ### SSL
 
