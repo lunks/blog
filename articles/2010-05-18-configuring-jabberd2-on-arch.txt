@@ -45,8 +45,40 @@ http://www.jabberdoc.org/AdminGuide
       uncomment line 107.
 
 ### DNS
-    * Added SRV records that loop back and point to this server. Perhaps it's silly, but
-      it may be necessary. It probably is not.
+    * Added SRV records that loop back and point to this server. Perhaps it's
+      silly, but it may be necessary. It probably is not.
+
+### SSL
+
+Setting up SSL on Jabberd2 is a little tricky. The `.pem` file you point it to
+needs to be in a specific format. I'll outline how to get it to work with
+StartSSL, though this process should be pretty much the same. I presume you
+have not created a CSR or private key yet.
+
+1. You open up https://www.startssl.com and launch the certificate wizard
+2. Create a private key
+3. When StartSSL shows you your private key, in a text box, copy it into a
+   file.
+4. Run `openssl rsa -in ssl.key -out ssl.key` to decrypt your private key. Make
+   sure to replace 'ssl.key' with the name of the file you downloaded!
+5. Continue on, and choose the domain & subdomain you want to sign.
+6. StartSSL will give you the signed certificate. Save it to a file, like
+   `server.crt` or whatever.
+7. Download the CA & Class 1 intermediate server certificates as well.
+8. Now we combine all these files, but **in a specific order!**
+9. Run these commands, assuming all the files are in the same directory. Make
+   sure to change the file names referenced here if you didn't use the same
+   names I did!
+
+       cat server.crt > server.pem
+       cat ssl.key >> server.pem
+       cat sub.class1.server.ca.pem >> server.pem
+       cat ca.pem >> server.pem
+
+   And now your file is ready. Move it somewhere secure, set the ownership
+   correctly, and edit the files as above to point to your key.
+
+## Fin
 
 And that is it. I will update this page as I configure the server some more. As a note,
 all the .dist files you see in `/etc/jabberd/` are the original, shipped versions. Don't
