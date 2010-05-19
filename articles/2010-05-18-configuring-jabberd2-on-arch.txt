@@ -20,10 +20,11 @@ http://www.jabberdoc.org/AdminGuide
 
 ### c2s.xml
 * Set the ID (the name) of the server. Line 125.
-* Use PAM as the authentication module: `<module>pam</module>` Line 334.
-* Point to my SSL key for encrypted router communication, uncomment line 29.
 * As a parameter to `<id>`, pointed it to my SSL key.
 * As a parameter to `<id>`, required STARTTLS.
+* As a parameter to `<id>`, set realm to "".
+* Use PAM as the authentication module: `<module>pam</module>` Line 334.
+* Point to my SSL key for encrypted router communication, uncomment line 29.
 * Enable HTTP forward to http://evaryont.me. Uncomment line 176.
 
 ### router.xml
