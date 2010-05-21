@@ -1,0 +1,126 @@
+title: Setting up a DHCP/NAT server with dnsmasq
+date: 20/05/2010
+
+dnsmaq, a program by Simon Kelley, is a DNS and DHCP server, very
+useful, and quite simple. From it's website:
+
+> Dnsmasq is a lightweight, easy to configure DNS forwarder and DHCP
+> server. It is designed to provide DNS and, optionally, DHCP, to a
+> small network. It can serve the names of local machines which are
+> not in the global DNS. The DHCP server integrates with the DNS
+> server and allows machines with DHCP-allocated addresses to appear
+> in the DNS with names configured either in each host or in a
+> central configuration file. Dnsmasq supports static and dynamic
+> DHCP leases and BOOTP/TFTP/PXE for network booting of diskless
+> machines.
+
+## The backstory
+
+Normally I don't ever need to worry about DNS servers at all. My
+parents have a Linksys router in the basement which connects to
+Verizon's DSL network. The router comes with a DHCP server
+pre-configured, and is easily further configurable via a web
+interface. My computer connects through a series of hubs until it
+gets to the basement. Nothing all that complex. Computer (A)
+connects to the home network, a patch work series of cables
+throughout the house until it finally reaches router (B). Simple.
+
+Except, my parents and I got into a little spat. Teenager angst vs
+parental "we know what's good for you", of course I don't believe
+what they said at the time is the best thing for me. Anyways, this
+argument resulted my computer being physically disconnected from
+the LAN! It was meant to serve as punishment, but I ended up
+getting around that pretty easily.
+
+Here's how, for all you miscreants out there.
+
+## The setup
+
+You're going to need a device, of any kind, with at least 2
+connections. The principles used here are also what makes
+[tethering][] work: In one port, out the other. In tethering, the
+'in' port is the cellphone's USB connection, connected to the
+computer. The 'out' port is Verizon's / AT&T's 3G network.
+
+In my case, I had a blackberry, and blackberry & Linux tethering is
+an *even more* annoying thing to set up than someone learning DHCP
+for the first time, so I choose to use the infrastructure I already
+had in my room: my laptop and my personal network hub.
+
+For nearly every room, there is a network hub with 4 or 8 ports
+(depending on the model). The need arose when [my brother][] and I
+had multiple computers in our rooms at the same time. I once had 3
+computers at the same time! So instead of running lots of cables
+between the rooms, we (and I do me we, I set up my segment of the
+network myself) set up a hub in each room so only one cable needed
+to be ran from room to room instead of multiple ones.
+
+For my setup, I used my **laptop** and my **hub**. I would, in a
+sense anyways, *tether my desktop computer to my laptop.* This is a
+rudimentary explanation, but if you don't understand what I'm about
+to say, then I hope you at least understand that phrase.
+
+My laptop runs Linux. [Arch Linux][] to be exact. For you Windows
+users out there, sorry, this post ends here.
+
+dnsmasq's default configuration file is *huge* with 540 lines. Most
+of it is comments explaining the various options, but for just a
+basic DHCP server, you only need 3 options, in
+`/etc/dnsmasq.conf`:
+
+bind-interfaces 
+:   Have dnsmasq connect to all interfaces. (127.0.0.1 and 0.0.0.0)
+interface=eth0 
+:   The network interface you want dnsmasq to listen for DHCP
+    requests. This is the so-called 'in' port. (My parlance, meant to
+    simplify it for you. Not the real term, but I can care less in this
+    post.)
+dhcp-range=10.18.1.100,10.18.1.200,24h 
+:   Read the comments for the correct syntax, there's no need to
+    repeat it here. This is the range of IP addresses you want dnsmasq
+    to lease (or 'hand-out').
+
+After you've configured it, dnsmasq is done! Now you need to set up
+your network interfaces. Have eth0 (or whatever you used in the
+interface= line in dnsmasq.conf) be set to a static IP, and your
+external-facing interface (wlan0 on my laptop) configured properly
+as well. This second interface is the 'out' port.
+
+You're not done yet! You still need to configure the kernel to
+allow IP forwarding. This doesn't involve any kernel compiling at
+all, just a few commands and [iptables][].
+
+    # Thanks to anxrc from #archlinux on Freenode for the commands!
+    iptables -A FORWARD -i wlan0 -o eth0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+    iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+    iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+    echo 1 > /proc/sys/net/ipv4/ip_forward
+
+Make sure to change wlan0 and eth0 to the correct 'out' and 'in'.
+After running these commands, you can start dnsmasq (Arch folks:
+`/etc/rc.d/dnsmasq start`).
+
+And that's it! If your other computer (in my case, my desktop) was
+already configured to use DHCP, you don't need to do any other
+configuration. Everything is handled by dnsmasq. If you have a
+static IP, make sure it's at least in the same subnet as dnsmasq's
+configuration.
+
+dnsmasq has a *lot* more configurable options. For more information
+about what it can do (such as integrating a DNS server with the
+DHCP records) check out its [homepage][] and Arch's
+[wiki page on dnsmasq][]. Google it as well, there are a lot of
+articles about dnsmasq!
+
+> This is a re-post from my Posterous blog. I figured it'd be a good idea to
+> move this article to my blog here, in a more portable format (Markdown)
+> as well as unifying my blogs.
+
+
+  [tethering]: http://en.wikipedia.org/wiki/Tethering
+  [my brother]: http://twitter.com/thristhart
+  [Arch Linux]: http://www.archlinux.org
+  [iptables]: http://www.netfilter.org/ "NetFilter & IPTables"
+  [homepage]: http://www.thekelleys.org.uk/dnsmasq/doc.html "dnsmasq"
+  [wiki page on dnsmasq]: http://wiki.archlinux.org/index.php/Dnsmasq
+
