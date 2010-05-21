@@ -1,0 +1,97 @@
+--- 
+title: "SSH 'Back Talk': Firewall busting server to client SSH connections"
+date: 25/09/2009
+
+# SSH 'Back Talk'
+
+## Connecting to your local computer behind a firewall
+
+My goal is to connect to my local computer from my remote server.
+The problem was, the computer was behind a NAT firewall and the
+local network was assigned a dynamic IP. The idea is that I could
+remote-control my local computer from the remote server without
+compromising the security of the LAN. This meant that I couldn't
+punch holes in the firewall and just have a dedicated box sitting
+around. I also didn't want to depend on too many third parties,
+like [No IP][] or [DynDNS][].
+
+My scenario does depend on a remote server not completely
+controlled by me ([RapidXen][] provides my VPS) but this solution
+works on any pair of computers. You can even chain ssh sessions
+(connecting from one computer to another until you get to your
+target) but that is out of the scope of this article.
+
+What spurred this on is simple: I'm a lazy, UNIX knowing system
+administrator. I hated how I opened up RSS feeds from [canto][]. I
+created a simple script which outputted the URL of choice to a
+local text file, then I'd open up the text file, manually
+select-drag the URL with my mouse, and paste it into Firefox. This
+is a horrible method, it's too slow, and breaks my 'flow',
+requiring me to open a different application (possibly even closing
+canto) and do things manually. Since I'm so lazy, I don't like
+doing this manually. I want robots to do this! But, there was no
+way that I knew, so far, to control my local computer.
+
+I wasn't about to start an X server or Firefox on the VPS and do
+some X forwarding over SSH. Not only is that slow, I do have to be
+kind to the hard disks at RapidXen. With caching and the SQLite
+databases, Firefox isn't easy on the read/writes. That was a
+non-starter from the beginning.
+
+So how could I remotely access my local computer to open a new
+Firefox tab from the VPS, which is separated by a firewall *and* my
+local computer never has the same IP for more than 2 hours? It took
+me quite a few weeks (especially since I wasn't only searching for
+a solution to this problem during that time) but I found the
+answer! Remote-forwarding, thanks to SSH. It was perfect, too,
+since the network traffic is encrypted and it still requires my
+password, so if my VPS is ever compromised, my local computer is
+safe.
+
+Key benefits of using this strategy:
+
+-   The connection is initiated by the client (my local computer)
+    so the server never has to worry about what IP my computer is on.
+-   Since the server never starts the connection, the firewall
+    doesn't block the traffic.
+
+Both of my key issues, resolved! So how would you go about setting
+up this miracle solution? It's really quite simple. Just run
+`ssh -R <remote port>:localhost:22 <remote computer>`. In my case,
+the remote port is 1615, and the remote computer is this VPS,
+[evaryont.me][]. You can of course substitute other values besides
+localhost and port 22, for instance, if you want to access the SMTP
+server (port 25) remotely that is hosted on 192.168.5.10, you can
+use `ssh -R 1125:192.168.5.10:25 user@remote-computer`. Of course,
+the same rule applies to other servers, if you want to use a port
+below 1024 (say, 23) you have to log into the remote computer as
+root.
+
+With this client-initiated connection, I can now connect to my
+local computer from the VPS pretty easily. Here is the script I use
+to open URLs now:
+
+    > #!/bin/sh
+    > ssh -p 1615 colin@localhost "DISPLAY=:0 open '$@'"
+
+open is a script I made which you can access [here][], which acts just
+like the Mac OS X version. I have to set DISPLAY because that environment
+variable gets stripped when you first connect to the remote computer. I'd
+like a better solution, such as checking if the X process is running,
+then determining exactly which TTY device it's using and setting DISPLAY
+accordingly, but I haven't found it, and this Works For Me.
+
+Another fun feature of this solution is you can make a complete
+(albeit, very slow) circle back to your own computer. Use
+`ssh -R ... remote-computer` (of course, substituting the correct
+parameter for '…') to connect to the remote computer, and then call
+`ssh user@localhost -p PORT` to connect back back to the local
+computer. In an interactive console, there isn't much benefit to
+this, but in automated scripts, this is my goal.
+
+  [No IP]: http://www.no-ip.com
+  [DynDNS]: http://www.dyndns.com
+  [RapidXen]: http://www.rapidxen.net
+  [canto]: http://codezen.org/canto
+  [evaryont.me]: http://evaryont.me
+  [here]: http://www.github.com/evaryont/bin/
