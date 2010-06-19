@@ -15,5 +15,5 @@ Like most [toto] blogs, this one started off based on a wonderful template for [
  * [This blog] (hosted on [Heroku])
 
 [homepage]: http://evaryont.me
-[This blog]: http://mindtables.heroku.com
+[This blog]: http://blog.evaryont.me
 [Heroku]: http://heroku.com
