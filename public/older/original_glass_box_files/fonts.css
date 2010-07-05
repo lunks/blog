@@ -1,0 +1,27 @@
+/* Raleway
+
+   Made by Matt McInerney
+   http://www.theleagueofmoveabletype.com/fonts/14-raleway
+*/
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/raleway.otf') format('opentype');
+}
+
+.raleway-font {
+    font-family: "Raleway";
+}
+
+/* Orbitron
+
+   Made by Matt McInerney
+   http://www.theleagueofmoveabletype.com/fonts/12-orbitron
+*/
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/orbitron.otf') format('opentype');
+}
+
+.orbitron-font {
+    font-family: "Orbitron";
+}
