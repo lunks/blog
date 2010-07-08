@@ -3,6 +3,8 @@ require 'rack/contrib'
 require 'coderay'
 require 'rack/codehighlighter'
 require 'rack/less'
+#require 'rack/tidy'
+require 'rack-static-if-present'
 
 require 'toto'
 require 'nokogiri'
@@ -12,6 +14,7 @@ use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico', '/fonts', '/r
 use Rack::CommonLogger
 use Rack::Deflect
 Rack::Mime::MIME_TYPES[".otf"] = "application/vnd.ms-opentype" # OpenType fonts
+use Rack::StaticIfPresent, :urls => ["/"], :root => "public"
 
 if ENV['RACK_ENV'] == 'development'
   require 'rack/bug'
@@ -28,6 +31,9 @@ Rack::Less.configure do |config|
     config.cache = (ENV['RACK_ENV'] == 'development') # Heroku is read-only, so only cache in development
 end
 use Rack::Less, :source => "less/"
+
+#TIDY_LIB = "/usr/lib/libtidy.so"
+#use Rack::Tidy
 
 #
 # Create and configure a toto instance
