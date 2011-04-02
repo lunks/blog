@@ -68,17 +68,17 @@ of it is comments explaining the various options, but for just a
 basic DHCP server, you only need 3 options, in
 `/etc/dnsmasq.conf`:
 
-bind-interfaces 
-:   Have dnsmasq connect to all interfaces. (127.0.0.1 and 0.0.0.0)
-interface=eth0 
-:   The network interface you want dnsmasq to listen for DHCP
-    requests. This is the so-called 'in' port. (My parlance, meant to
-    simplify it for you. Not the real term, but I can care less in this
-    post.)
-dhcp-range=10.18.1.100,10.18.1.200,24h 
-:   Read the comments for the correct syntax, there's no need to
-    repeat it here. This is the range of IP addresses you want dnsmasq
-    to lease (or 'hand-out').
+    bind-interfaces 
+    :   Have dnsmasq connect to all interfaces. (127.0.0.1 and 0.0.0.0)
+    interface=eth0 
+    :   The network interface you want dnsmasq to listen for DHCP
+        requests. This is the so-called 'in' port. (My parlance, meant to
+        simplify it for you. Not the real term, but I can care less in this
+        post.)
+    dhcp-range=10.18.1.100,10.18.1.200,24h 
+    :   Read the comments for the correct syntax, there's no need to
+        repeat it here. This is the range of IP addresses you want dnsmasq
+        to lease (or 'hand-out').
 
 After you've configured it, dnsmasq is done! Now you need to set up
 your network interfaces. Have eth0 (or whatever you used in the
