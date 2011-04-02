@@ -4,7 +4,9 @@ body {
     font-family: 'Baskerville', Georgia, Times, serif;
     font-size: 20px;
     line-height: 30px;
+    width: 960px;
     padding: 15px;
+    padding-top:0px;
     background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A;
     color: #999;
 }
@@ -109,7 +111,6 @@ body > footer {
     color: #888;
 }
 #everything {
-  width: 960px;
 }
 /*
 .somebox {
