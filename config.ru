@@ -1,14 +1,5 @@
-require 'rack'
-require 'rack/contrib'
-require 'coderay'
-require 'rack/codehighlighter'
-require 'rack/less'
-#require 'rack/tidy'
-require 'rack-static-if-present'
-
-require 'toto'
-require 'nokogiri'
-
+require 'bundler'
+Bundler.require
 # Rack config
 use Rack::Static, :urls => ['/css', '/js', '/img', '/favicon.ico', '/fonts', '/robots.txt'], :root => 'public'
 use Rack::CommonLogger
