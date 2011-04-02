@@ -1,0 +1,12 @@
+---
+title: Hello World
+date: 02/04/2011
+
+On the last couple of hours I've been setting up this new blog you are looking at. I have decided to go with [toto][], a rack-based blog that is painfully simple to use and run. Design is not finished yet, and is pretty much a ripoff from a toto-powered [blog][] which inspired me. Nor there is a comment system.
+
+But... if I want to post something new all I have to do is create a new txt file and push to Heroku. That's amazing! I instantly fell in love with it mainly because of this.
+
+More coming soon. See ya!
+
+[toto]: http://cloudhead.io/toto
+[blog]: http://mindtables.heroku.com
