@@ -6,7 +6,7 @@ body {
     line-height: 30px;
     padding: 15px;
     width: 960px;
-    background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A
+    background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A;
     color: #999;
 }
 header, footer, section, article {
