@@ -5,7 +5,6 @@ body {
     font-size: 20px;
     line-height: 30px;
     padding: 15px;
-    width: 960px;
     background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A;
     color: #999;
 }
@@ -109,9 +108,8 @@ body > footer {
     font-size: 18px;
     color: #888;
 }
-.somebox {
-  background-color: white;
-  margin: 100px;
+#everything {
+  width: 960px;
 }
 /*
 .somebox {

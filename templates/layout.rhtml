@@ -19,19 +19,21 @@
     <title><%= title %></title>
   </head>
   <body>
-    <section class="somebox">
+    <div id='everything'>
+      <section class="somebox">
       <ul>
-          <li><a href="http://evaryont.me">Home</a></li>
-          <li><a href="http://mindtables.heroku.com">Blog</a></li>
-          <li><a href="http://evaryont.mp">Lifestream</a></li>
+        <li><a href="http://evaryont.me">Home</a></li>
+        <li><a href="http://mindtables.heroku.com">Blog</a></li>
+        <li><a href="http://evaryont.mp">Lifestream</a></li>
       </ul>
       <div class="content">
         <%= yield %>
       </div>
-    </section>
-    <footer>
+      </section>
+      <footer>
       powered by a <a href="http://github.com/evaryont/toto">fork</a> of <a href="http://cloudhead.io/toto">toto</a>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
 
