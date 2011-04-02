@@ -8,10 +8,8 @@ Rack::Mime::MIME_TYPES[".otf"] = "application/vnd.ms-opentype" # OpenType fonts
 use Rack::StaticIfPresent, :urls => ["/"], :root => "public"
 
 if ENV['RACK_ENV'] == 'development'
-  require 'rack/bug'
-
+  Bundler.require(:development)
   use Rack::ShowExceptions
-  use Rack::Profiler
   use Rack::Bug
 end
 
@@ -25,7 +23,7 @@ toto = Toto::Server.new do
   # See http://github.com/cloudhead/toto#readme for the configuration keys
 
   set :author,    "Pedro Nascimento"
-  set :title,     "Blog"
+  set :title,     "rackerage"
   set :url,       (ENV['RACK_ENV'] == 'development') ? "http://localhost" : "http://tunein.heroku.com"
   set :markdown,  :smart
   set :cache,      28800
