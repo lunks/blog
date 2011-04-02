@@ -114,7 +114,7 @@ body > footer {
     font-size: 18px;
     color: #888;
 }
-#everything {
+.somebox {
     padding-top: 20px;
     background-color:white;
     margin-left: auto; margin-right: auto;
