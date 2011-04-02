@@ -109,6 +109,9 @@ body > footer {
     font-size: 18px;
     color: #888;
 }
+.somebox {
+  background-color: white;
+}
 /*
 .somebox {
     margin-left: auto; margin-right: auto;
