@@ -17,18 +17,6 @@ end
 
 use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", :pattern => /\A:::(\w+)\s*(\n|&#x000A;)/i, :logging => true
 
-Rack::Less.configure do |config|
-    config.compress = :yui # Requires yui-compressor gem
-    config.cache = (ENV['RACK_ENV'] == 'development') # Heroku is read-only, so only cache in development
-end
-use Rack::Less, :source => "less/"
-
-#TIDY_LIB = "/usr/lib/libtidy.so"
-#use Rack::Tidy
-
-#
-# Create and configure a toto instance
-#
 toto = Toto::Server.new do
   #
   # Add your settings here
