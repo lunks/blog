@@ -12,7 +12,6 @@ body {
     padding: 15px;
     padding-top:0px;
     background: url("/img/bg.png") repeat fixed 0 0 #1A1A1A;
-    color: #999;
 }
 header, footer, section, article {
     display: block;
@@ -112,18 +111,16 @@ body > footer {
     margin-left: 10px;
     font-style: italic;
     font-size: 18px;
-    color: #888;
 }
 .somebox {
-    padding-top: 20px;
     background-color:white;
     margin-left: auto; margin-right: auto;
     -moz-border-radius: 10px;
-    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     -webkit-border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
     border: 1px solid rgba(255, 255, 255, 0.30);
 
 }
