@@ -116,9 +116,6 @@ body > footer {
 #everything {
     background-color:white;
     -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.6);
-}
-/*
-.somebox {
     margin-left: auto; margin-right: auto;
     -moz-border-radius: 10px;
     -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
@@ -128,6 +125,10 @@ body > footer {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     border: 1px solid rgba(255, 255, 255, 0.30);
     background-color: rgba(255, 255, 255, 0.06);
+
+}
+/*
+.somebox {
 }
 .somebox .content {
     margin: 10px;
