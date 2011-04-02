@@ -114,7 +114,7 @@ body > footer {
     color: #999;
 }
 .somebox {
-    margin: 15px;
+    padding: 15px;
     background-color:white;
     margin-left: auto; margin-right: auto;
     -moz-border-radius: 10px;
