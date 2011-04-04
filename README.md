@@ -1,4 +1,4 @@
-# Mind:Tables
+# Rackerage
 
 So here we go again, another blog!
 
@@ -14,6 +14,5 @@ Like most [toto] blogs, this one started off based on a wonderful template for [
  * My [homepage]
  * [This blog] (hosted on [Heroku])
 
-[homepage]: http://evaryont.me
-[This blog]: http://blog.evaryont.me
+[This blog]: http://rackerage.heroku.com
 [Heroku]: http://heroku.com
