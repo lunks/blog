@@ -1,3 +1,4 @@
+<% url = [@config[:url], @path].join('/') %>
 <article class="post">
   <header>
     <h1><%= title %></h1>
@@ -10,6 +11,7 @@
 
 
   <section class="comments">
+   path: <%= Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API']).shorten(url) %>
   </section>
 </article>
 

@@ -17,7 +17,7 @@ use Rack::Codehighlighter, :coderay, :markdown => true, :element => "pre>code", 
 toto = Toto::Server.new do
   set :author,    "Pedro Nascimento"
   set :title,     "asilia"
-  set :url,       (ENV['RACK_ENV'] == 'development') ? "http://localhost" : "http://tunein.heroku.com"
+  set :url,       (ENV['RACK_ENV'] == 'development') ? "http://localhost" : "http://asilia.heroku.com"
   set :markdown,  :smart
   set :cache,      28800
   set :date, lambda {|now| now.strftime("%d %B %Y") }
