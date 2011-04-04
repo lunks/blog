@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: 02/04/2011
+tag: Blog
 
 On the last couple of hours I've been setting up this new blog you are
 looking at. I have decided to go with [toto], a rack-based blog that is
