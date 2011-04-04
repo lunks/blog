@@ -1,3 +1,4 @@
+<% short_url = Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API']).shorten(url).short_url %>
 <article class="post">
 <header>
 <h1><%= title %></h1>
@@ -8,9 +9,9 @@
 <%= body %>
 </section>
 <section class="comments">
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="lunks">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url=<%=short_url %> data-count="none" data-via="lunks">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 <div id="twitter-reactions"></div>
-<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="lunks">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+<a href="http://twitter.com/share" class="twitter-share-button" data-url=<%=short_url %> data-count="none" data-via="lunks">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 </section>
 </article>
 
