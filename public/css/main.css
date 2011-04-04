@@ -127,6 +127,31 @@ body > footer {
     border: 1px solid rgba(255, 255, 255, 0.30);
 
 }
+#twitter-reactions-header {
+  text-align: center;
+}
+.comment {
+  padding-left: 12.5%;
+  width: 75%;
+  font-size: 85%;
+  line-height: 30px;
+  font-weight: bold;
+}
+.comment a.twitter-link {
+  color: #333333;
+}
+.comment-text {
+  font-weight: normal;
+}
+hr {
+  background-color: #b83000;
+  margin: 8px auto;
+  height: 1px;
+  width: 50%;
+  border: 0px;
+}
+.comments {
+    text-align: center;
 /*
 .somebox {
 }
