@@ -9,6 +9,7 @@ gem 'rack-contrib', :require => 'rack/contrib'
 gem 'rack-static-if-present'
 gem 'rack-codehighlighter', :require => 'rack/codehighlighter'
 gem 'nokogiri'
+gem 'bitly'
 group :development do
   gem 'rack-bug', :require => 'rack/bug'
   gem 'mongrel'

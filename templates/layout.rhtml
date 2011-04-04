@@ -14,7 +14,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="generator" content="toto" />
 
-    <title><%= title %></title>
+    <title>
+      <% if @path == 'index' %>
+        Asilia
+      <%elsif @path.split('/').compact.length == 4 %>
+          <%= title %> - Asilia
+      <%else %>
+        <%= @path.capitalize.gsub(/[-]/, ' ') %> - Asilia
+      <%end %>
+    </title>
   </head>
   <body>
     <section class="somebox">
@@ -23,6 +31,7 @@
     </div>
     </section>
     <footer>
+    path: <%= Bitly.new(ENV['BITLY_USERNAME'], ENV['BITLY_API']).shorten(self.url) %>
     blog by Pedro Nascimento, powered by a <a href="http://github.com/lunks/toto">fork</a> of <a href="http://cloudhead.io/toto">toto</a> with a layout heavily inspired by <a href="mindtables.heroku.com/">Mind Tables</a>
     </footer>
   </body>

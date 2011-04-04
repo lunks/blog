@@ -1,18 +1,35 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.4)
+    bitly (0.6.1)
+      crack (>= 0.1.4)
+      httparty (>= 0.5.2)
+      oauth2 (>= 0.1.1)
     builder (3.0.0)
     cgi_multipart_eof_fix (2.5.0)
     coderay (0.9.7)
+    crack (0.1.8)
     daemons (1.1.2)
+    faraday (0.6.0)
+      addressable (~> 2.2.4)
+      multipart-post (~> 1.1.0)
+      rack (< 2, >= 1.1.0)
     fastthread (1.0.7)
     gem_plugin (0.2.3)
+    httparty (0.7.4)
+      crack (= 0.1.8)
     mongrel (1.1.5)
       cgi_multipart_eof_fix (>= 2.4)
       daemons (>= 1.0.3)
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
+    multi_json (0.0.5)
+    multipart-post (1.1.0)
     nokogiri (1.4.4)
+    oauth2 (0.2.0)
+      faraday (~> 0.6.0)
+      multi_json (~> 0.0.4)
     rack (1.2.2)
     rack-bug (0.3.0)
       rack (>= 1.0)
@@ -35,6 +52,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bitly
   builder
   coderay
   mongrel
