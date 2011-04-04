@@ -23,7 +23,7 @@ toto = Toto::Server.new do
   # See http://github.com/cloudhead/toto#readme for the configuration keys
 
   set :author,    "Pedro Nascimento"
-  set :title,     "rackerage"
+  set :title,     "asilia"
   set :url,       (ENV['RACK_ENV'] == 'development') ? "http://localhost" : "http://tunein.heroku.com"
   set :markdown,  :smart
   set :cache,      28800
