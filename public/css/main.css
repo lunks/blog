@@ -56,7 +56,6 @@ a:hover {
 }
 .post header .date {
     position: relative;
-    top: -100%;
 }
 .post {
     margin-bottom: 30px;
