@@ -13,7 +13,7 @@ What makes it great is: If I want to post something new all I have to do is crea
 Design is not finished yet, and is pretty much a ripoff from a
 toto-powered [blog] which inspired me. <del>Nor there is a comment
 system. I'm using Twitter for comments. \o/</del> Topsy sucks for
-retrieving real data, so now I just have a twitter link. Enough for me.
+retrieving realtime data, so now I just have a twitter link. Enough for me.
 
 More coming soon. See ya!
 
