@@ -1,0 +1,22 @@
+--- 
+title: Byobu > Terminal tabs
+date: 04/04/2011
+tag: linux
+
+For the last three days I've been using [Byobu]. It's basically screen
+but with a nice menu for settings things up, easier management controls
+and sort of 'tray'. It also handles tabs (as it uses screen).
+~
+To use it, first install if not installed. On Ubuntu:
+    $ sudo apt-get install byobu
+Then just run *byobu*. Hit \<F2\> for creating a new screen, \<F3\> to
+go to the previous and \<F4\> to go to the next one. \<F9\> will summon
+its configuration menu, which will allow you to set byobu to run when
+you start a new login shell (useful for remote servers), *tray* plugins
+and more.
+
+Note: on my machine \<F9\> was already being handled by Compiz, but you can cheat and user
+Super+\<F9\>, and the menu will come up. You may set a different
+shortcut if you want.
+
+[byobu]: https://launchpad.net/byobu

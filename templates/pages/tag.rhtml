@@ -1,12 +1,13 @@
+<header>
 <h1>Articles on <%= tag %></h1> 
- 
+</header>
 <table id="archive-table"> 
   <% if archives.length > 0 %> 
     <% last_month = nil %> 
     <% for entry in archives %> 
       <tr> 
         <td align="right"> 
-          <% month = entry.date.split.first %> 
+          <% month = entry.date.split[01] %> 
           <% if last_month.nil? || month != last_month %> 
             <%= month %> 
             <%= entry.date.split.last %> 
