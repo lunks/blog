@@ -3,6 +3,8 @@ title: Hello World
 date: 02/04/2011
 tag: Blog
 
+[toto]: http://cloudhead.io/toto
+[blog]: http://mindtables.heroku.com
 On the last couple of hours I've been setting up this new blog you are
 looking at. I have decided to go with [toto], a rack-based blog that is
 painfully simple to use and run.
@@ -17,6 +19,3 @@ to Disqus. It was a pain to remove almost everything out of it, but it's
 kinda acceptable. :)
 
 More coming soon. See ya!
-
-[toto]: http://cloudhead.io/toto
-[blog]: http://mindtables.heroku.com

@@ -3,6 +3,8 @@ title: Byobu > Terminal tabs
 date: 04/04/2011
 tag: linux
 
+[byobu]: https://launchpad.net/byobu
+
 For the last three days I've been using [Byobu]. It's basically screen
 but with a nice menu for settings things up, easier management controls
 and sort of 'tray'. It also handles tabs (as it uses screen).
@@ -20,4 +22,3 @@ Note: on my machine \<F9\> was already being handled by Compiz, but you can chea
 Super+\<F9\>, and the menu will come up. You may set a different
 shortcut if you want.
 
-[byobu]: https://launchpad.net/byobu
