@@ -20,6 +20,7 @@ toto = Toto::Server.new do
   set :url,       (ENV['RACK_ENV'] == 'development') ? "http://localhost" : "http://asilia.heroku.com"
   set :summary,   :max => 100, :delim => /~/
   set :markdown,  :smart
+  set :disqus,    'asilia'
   set :cache,      28800
   set :date, lambda {|now| now.strftime("%d %B %Y") }
   set :error_page, lambda {|code| "Sadly, there is an error. You made it go #{code}, thanks a lot." }

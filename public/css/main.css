@@ -120,6 +120,7 @@ body > footer {
   margin-left: 10px;
   font-style: italic;
   font-size: 18px;
+  font-size: 85%;
   color: #999;
 }
 .somebox {
@@ -136,18 +137,12 @@ body > footer {
   border: 1px solid rgba(255, 255, 255, 0.30);
 
 }
-#twitter-reactions-header {
-  text-align: center;
-}
 .comment {
   padding-left: 12.5%;
   width: 75%;
   font-size: 85%;
   line-height: 30px;
   font-weight: bold;
-}
-.comment a.twitter-link {
-  color: #333333;
 }
 .comment-text {
   font-weight: normal;
@@ -159,17 +154,36 @@ hr {
   width: 50%;
   border: 0px;
 }
-.comments {
+#dsq-content {
+  width: 100%;
+}
+#dsq-content h3 {
   text-align: center;
-  /*
-  .somebox {
 }
-  .somebox .content {
-  margin: 10px;
-  padding: 10px;
-  background-color: #eee;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+#dsq-comments {
+  width: 60%;
+  padding-left: 20% !important;
 }
-   */
+.dsq-comment-header {
+}
+
+.dsq-commenter-name {
+  font-weight: normal !important;
+  font-size: 18px !important;
+}
+.dsq-commenter-name:after {
+  content: " said:";
+}
+#dsq-footer, #dsq-global-toolbar, #dsq-sort-by, .dsq-attach-media, #dsq-reply h3, #dsq-account-dropdown {
+  display:none !important;
+}
+.dsq-comment-text {
+  font-family: 'Lucida Grande', 'Arial';
+  font-size: 80%;
+}
+#dsq-content-stub {
+  text-align: center;
+}
+.twitter-share-button {
+  text-align: center;
+}
