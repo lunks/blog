@@ -8,7 +8,7 @@ xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
 # enable this again. Until then, don't try confusing smarter parsers.
 # xml.link :rel => "hub", :href => "http://pubsubhubbub.appspot.com"
 
-  @articles.reverse.each do |article|
+  @articles.each do |article|
     xml.entry do
       xml.title article.title
       xml.link "rel" => "alternate", "href" => article.url
