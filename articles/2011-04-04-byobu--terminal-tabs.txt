@@ -8,6 +8,7 @@ but with a nice menu for settings things up, easier management controls
 and sort of 'tray'. It also handles tabs (as it uses screen).
 ~
 To use it, first install if not installed. On Ubuntu:
+    :::term
     $ sudo apt-get install byobu
 Then just run *byobu*. Hit \<F2\> for creating a new screen, \<F3\> to
 go to the previous and \<F4\> to go to the next one. \<F9\> will summon

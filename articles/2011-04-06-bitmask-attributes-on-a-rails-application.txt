@@ -1,0 +1,113 @@
+--- 
+title: Bitmask attributes on a Rails application
+date: 06/04/2011
+tag: rails
+
+Today I had to develop a model that would require one or more roles
+assigned to it. This is a common problem when dealing with *user roles*.
+One of the usual approaches (and the one I went for) is to use bit
+masks.
+
+It's simple:
+
+Suppose I have three user roles: Administrator, Moderator, and User. I
+want to set someone as an Administrator and an
+User, a Moderator and an User, and so on. To use a bit mask is to use
+powers of 2 to designate each role. Like this:
+    :::ruby
+    00000001 = 2^0 = 1
+    # User
+
+    00000010 = 2^1 = 2
+    # Moderator
+
+    00000100 = 2^2 = 4
+    # Administrator
+
+
+So, if I require someone to have an User and Administrator role, I'd
+have a 5 as a result:
+    :::ruby
+    00000101 = 2^2 + 2^0 = 5
+    # User + Administrator
+
+This might seem complicated, depending on your experience. Thanks to [an article on
+cancan wiki][cancan], we have a simple code to do this. While it's
+simple, it may be hard to figure out on the first look. I have added
+some comments to simplify the understanding.
+We have the following roles:
+    :::ruby
+    ROLES = %w[user, moderator, administrator]
+
+To set roles:
+    :::ruby
+    def roles=(roles)
+    #make sure the roles received by parameters are sanitized against our set of roles
+      sanitized_roles = (roles & ROLES)
+      bits = sanitized_roles.map do |role|
+    #get which position is the role, and get the appropriate power of two
+        2**ROLES.index(role)
+      end
+    # We now have an array of powers of two, sum them
+      bitmask = bits.sum
+    #finally, we have the bitmask
+      self.roles_mask = bitmask
+    # In my case, I wanted to ensure this was persisted as soon as I set it. So, just save! :)
+      save
+    end
+
+To understand the part that reads the bitmask, a little more background
+is needed about the ampersand operator on Ruby. *&* stands for [bitwise
+AND][bitand]
+operator. What does it do? Back to our previous example:
+    :::ruby
+    00000101 = 2^2 + 2^0 = 5
+    #User + Administrator
+
+The bitwise operator looks for the equivalent bits for a number and
+checks which ones are 'enabled', i.e. set to 1. Like this:
+    :::ruby
+    00000101 & # 5
+    00000001   # 1
+    =
+    00000001   # 1
+
+And that is exactly what we want.
+
+To get which roles are defined on the bitmask:
+
+    :::ruby
+    def roles
+    #get all roles, and remove those that return true on the block
+      ROLES.reject do |r|
+    #make sure we are comparing against a number. Otherwise we may get false if our roles_mask is set to nil.
+    sanitized_roles_mask = (roles_mask || 0)
+
+    #we use the bitwise AND operator with our bitmask against each role position to the power of two. 
+    #If it returns a zero, that means that bit is off in our mask. zero? will return true if that is the case, rejecting the entry.
+        sanitized_roles_mask & 2**ROLES.index(r)).zero?
+      end
+    end
+Now we can simply check if someone belongs to a role:
+    :::ruby
+    def is_a?(role)
+      roles.include?(role.to_s)
+    end
+
+    #usage
+    user.is_a?(:user)
+    # => true
+You can also come up with a scope to find all objects which have a specific role:
+    :::ruby
+    scope :has_role, lambda {|role| where('roles_mask & ?', 2**ROLES.index(role.to_s))}
+
+    #usage
+    User.has_role(:administrator).where('NAME LIKE %?%', params[:name])
+
+That's it! I hope you enjoyed and can make use of this on a future
+project. There are a couple of gems at [rubygems.org][gems] that might
+make your the job easier, but I really liked Ryan Bates approach.
+
+[cancan]: https://github.com/ryanb/cancan/wiki/role-based-authorization
+[bitand]: http://en.wikipedia.org/wiki/Binary_and#AND
+[gems]: http://rubygems.org/search?query=bitmask
