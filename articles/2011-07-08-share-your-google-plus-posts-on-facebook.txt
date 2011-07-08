@@ -1,0 +1,13 @@
+--- 
+title: Share your Google Plus posts on Facebook
+date: 08/07/2011
+tag: social
+
+If you want to post on Google+ and want that post to appear on Facebook
+as well, it's simple: hop to [Facebook Mobile][fbm] and look for the
+'Upload by Email' section. Copy that email, add it as either one of your
+friends or to a special 'Facebook' circle like I did, and voila:
+Whenever you post to Google+ and post to the circle Facebook Mobile is
+in, your post will be shared across Facebook.
+
+[fbm]: http://www.facebook.com/mobile/
